@@ -3,992 +3,292 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dr. Werner Riegel — Patentanwalt | Kanzlei für gewerblichen Rechtsschutz</title>
-  <meta name="description" content="Kanzlei Riegel-IP in Markdorf am Bodensee. Patentanwalt, European Patent Attorney, European Trademark and Design Attorney. Patente, Marken, Designs, Gebrauchsmuster." />
+  <title>Dr. Werner Riegel — Patentanwalt · Das Unsichtbare schützen</title>
+  <meta name="description" content="Kanzlei Riegel-IP in Markdorf am Bodensee. Patentanwalt, European Patent Attorney, European Trademark and Design Attorney. Patente, Marken, Designs." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
   <style>
-    /* ═══════════════════════════════════════
-       RESET & VARIABLES
-    ═══════════════════════════════════════ */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
+      --abyss: #050810;
+      --deep: #0B1120;
+      --dark: #111B2E;
       --navy: #1F3864;
-      --navy-deep: #0F1F3A;
-      --navy-light: #2B4A7A;
+      --slate: #2A4470;
       --gold: #C9A84C;
-      --gold-soft: #D4B968;
-      --cream: #FAF8F4;
-      --warm-white: #FEFDFB;
-      --stone: #E8E4DD;
-      --text: #2A2A2A;
-      --text-light: #6B6B6B;
-      --text-muted: #9A9A9A;
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-body: 'Instrument Sans', -apple-system, sans-serif;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --gold-dim: rgba(201,168,76,0.3);
+      --cream: #F5F2EC;
+      --warm: #FEFCF8;
+      --stone: #E0DBD2;
+      --text-dark: #2A2A2A;
+      --serif: 'Cormorant Garamond', 'Georgia', serif;
+      --sans: 'Outfit', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', 'Consolas', monospace;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      font-family: var(--font-body);
-      color: var(--text);
-      background: var(--warm-white);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    ::selection {
-      background: var(--navy);
-      color: white;
-    }
-
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--sans); color: white; background: var(--abyss); overflow-x: hidden; }
+    ::selection { background: var(--gold); color: var(--abyss); }
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
 
-    /* ═══════════════════════════════════════
-       UTILITY
-    ═══════════════════════════════════════ */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 clamp(1.5rem, 4vw, 3rem);
-    }
+    /* Reveal */
+    .r { opacity: 0; transform: translateY(50px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+    .r.v { opacity: 1; transform: translateY(0); }
+    .r1 { transition-delay: 0.15s; }
+    .r2 { transition-delay: 0.3s; }
+    .r3 { transition-delay: 0.45s; }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-    .reveal-delay-4 { transition-delay: 0.4s; }
-    .reveal-delay-5 { transition-delay: 0.5s; }
+    /* ── NAV ── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 0; transition: all 0.6s var(--ease); }
+    .nav.scrolled { background: rgba(5,8,16,0.85); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); padding: 0.8rem 0; }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { height: 38px; width: auto; filter: brightness(0) invert(1); opacity: 0.9; transition: all 0.4s; }
+    .nav.scrolled .nav-logo { height: 30px; }
+    .nav.light { background: rgba(245,242,236,0.9); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); }
+    .nav.light .nav-logo { filter: none; opacity: 1; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); transition: color 0.3s; }
+    .nav-links a:hover { color: rgba(255,255,255,0.95); }
+    .nav.light .nav-links a { color: rgba(42,42,42,0.45); }
+    .nav.light .nav-links a:hover { color: var(--navy); }
+    .nav-cta-link { color: var(--gold) !important; border: 1px solid var(--gold-dim); padding: 0.5rem 1.2rem; border-radius: 2px; transition: all 0.3s !important; }
+    .nav-cta-link:hover { background: var(--gold) !important; color: var(--abyss) !important; }
+    .nav.light .nav-cta-link { color: var(--navy) !important; border-color: rgba(31,56,100,0.2); }
+    .nav.light .nav-cta-link:hover { background: var(--navy) !important; color: white !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; }
+    .hamburger span { width: 22px; height: 1.5px; background: rgba(255,255,255,0.7); transition: 0.3s; }
+    .nav.light .hamburger span { background: var(--navy); }
 
-    /* ═══════════════════════════════════════
-       NAVIGATION
-    ═══════════════════════════════════════ */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 1.25rem 0;
-      transition: all 0.5s var(--ease-out);
-      background: transparent;
-    }
-    .nav.scrolled {
-      background: rgba(255,253,251,0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 1px 0 rgba(31,56,100,0.08);
-      padding: 0.85rem 0;
-    }
-    .nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav-brand {
-      display: flex;
-      align-items: center;
-    }
-    .nav-logo {
-      height: 44px;
-      width: auto;
-      transition: height 0.4s var(--ease-out);
-    }
-    .nav.scrolled .nav-logo {
-      height: 36px;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-      align-items: center;
-    }
-    .nav-links a {
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--text-light);
-      position: relative;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--navy); }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1.5px;
-      background: var(--gold);
-      transition: width 0.3s var(--ease-out);
-    }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-cta {
-      background: var(--navy);
-      color: white !important;
-      padding: 0.6rem 1.4rem;
-      border-radius: 4px;
-      font-size: 0.8rem !important;
-      letter-spacing: 0.06em !important;
-      font-weight: 600 !important;
-      transition: background 0.3s, transform 0.3s !important;
-    }
-    .nav-cta:hover {
-      background: var(--navy-light) !important;
-      transform: translateY(-1px);
-    }
-    .nav-cta::after { display: none !important; }
-
-    /* Hamburger */
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-      z-index: 1001;
-    }
-    .nav-hamburger span {
-      width: 24px;
-      height: 2px;
-      background: var(--navy);
-      transition: all 0.3s;
-      border-radius: 2px;
-    }
-
-    /* ═══════════════════════════════════════
-       HERO SECTION
-    ═══════════════════════════════════════ */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background: var(--cream) url('hero-bg.svg') center center / cover no-repeat;
-    }
+    /* ── HERO ── */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; background: var(--abyss); overflow: hidden; }
     .hero::before {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -15%;
-      width: 70vw;
-      height: 70vw;
-      max-width: 900px;
-      max-height: 900px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(31,56,100,0.04) 0%, transparent 70%);
-      pointer-events: none;
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.15), transparent),
+        radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.1), transparent),
+        radial-gradient(1.5px 1.5px at 50% 40%, rgba(201,168,76,0.12), transparent),
+        radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.08), transparent),
+        radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.12), transparent),
+        radial-gradient(1px 1px at 15% 85%, rgba(201,168,76,0.08), transparent),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.06), transparent),
+        radial-gradient(1px 1px at 90% 35%, rgba(255,255,255,0.1), transparent),
+        radial-gradient(1.5px 1.5px at 40% 55%, rgba(201,168,76,0.1), transparent),
+        radial-gradient(1px 1px at 75% 80%, rgba(255,255,255,0.08), transparent);
+      animation: drift 30s ease-in-out infinite alternate;
     }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--stone), transparent);
-    }
+    @keyframes drift { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
+    .hero::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 60vw; height: 60vh; background: radial-gradient(ellipse, rgba(31,56,100,0.12), transparent 70%); pointer-events: none; }
+    .hero-inner { position: relative; z-index: 2; padding: 10rem 0 6rem; }
+    .hero-claim { font-family: var(--serif); font-size: clamp(3rem, 6.5vw, 6rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; color: rgba(255,255,255,0.92); }
+    .hero-claim em { font-style: italic; font-weight: 400; color: var(--gold); }
+    .hero-sub { margin-top: 2.5rem; font-size: 1rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.38); max-width: 480px; }
+    .hero-meta { margin-top: 4rem; display: flex; gap: 3rem; }
+    .hero-meta-item { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.2); text-transform: uppercase; }
+    .hero-meta-item span { color: var(--gold); opacity: 0.5; margin-right: 0.3rem; }
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.18); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold-dim), transparent); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.9; } }
 
-    /* Decorative grid pattern */
-    .hero-pattern {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 45%;
-      height: 100%;
-      opacity: 0.025;
-      background-image:
-        linear-gradient(var(--navy) 1px, transparent 1px),
-        linear-gradient(90deg, var(--navy) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: linear-gradient(135deg, transparent 20%, black 60%, transparent 90%);
-      -webkit-mask-image: linear-gradient(135deg, transparent 20%, black 60%, transparent 90%);
-      pointer-events: none;
-    }
+    /* ── BRIDGE STATEMENTS ── */
+    .bridge { padding: clamp(6rem, 14vw, 11rem) 0; position: relative; }
+    .bridge::before { content: ''; position: absolute; top: 0; left: clamp(1.5rem, 5vw, 4rem); width: 40px; height: 1px; background: var(--gold); opacity: 0.35; }
+    .bridge-dark { background: var(--deep); }
+    .bridge-mid { background: linear-gradient(180deg, var(--dark), var(--navy) 50%, var(--slate)); }
+    .bridge-light { background: var(--cream); color: var(--text-dark); }
+    .bridge-text { font-family: var(--serif); font-size: clamp(1.8rem, 3.8vw, 3.2rem); font-weight: 300; line-height: 1.35; max-width: 750px; }
+    .bridge-dark .bridge-text { color: rgba(255,255,255,0.65); }
+    .bridge-mid .bridge-text { color: rgba(255,255,255,0.7); }
+    .bridge-light .bridge-text { color: var(--navy); }
+    .bridge-text em { font-style: italic; font-weight: 400; }
+    .bridge-dark .bridge-text em { color: rgba(255,255,255,0.95); }
+    .bridge-mid .bridge-text em { color: var(--gold); }
+    .bridge-light .bridge-text em { color: var(--text-dark); }
+    .bridge-ref { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; margin-top: 2rem; opacity: 0.25; text-transform: uppercase; }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 8rem 0 6rem;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4rem;
-      align-items: center;
-    }
-    .hero-text { }
-    .hero-logo-area {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-logo-img {
-      width: clamp(280px, 28vw, 420px);
-      height: auto;
-      filter: drop-shadow(0 8px 40px rgba(31,56,100,0.08));
-    }
-    .hero-eyebrow {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 1.8rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      width: 40px;
-      height: 1.5px;
-      background: var(--gold);
-    }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.8rem, 5.5vw, 4.5rem);
-      line-height: 1.1;
-      color: var(--navy-deep);
-      max-width: 750px;
-      margin-bottom: 1.8rem;
-      letter-spacing: -0.02em;
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--navy);
-    }
-    .hero-sub {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: var(--text-light);
-      max-width: 560px;
-      margin-bottom: 2.8rem;
-    }
-    .hero-actions {
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
+    /* ── LEISTUNGEN ── */
+    .leistungen { background: var(--deep); padding: clamp(5rem, 10vw, 8rem) 0; }
+    .section-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.55; margin-bottom: 1rem; }
+    .section-heading { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; line-height: 1.2; color: rgba(255,255,255,0.85); max-width: 550px; margin-bottom: 4rem; }
+    .leistung { display: grid; grid-template-columns: 60px 1fr; gap: 0 2.5rem; padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.05); align-items: start; }
+    .leistung:last-child { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .leistung-nr { font-family: var(--mono); font-size: 0.72rem; color: var(--gold); opacity: 0.4; padding-top: 0.25rem; }
+    .leistung h3 { font-family: var(--serif); font-size: 1.45rem; font-weight: 400; color: rgba(255,255,255,0.8); margin-bottom: 0.6rem; transition: color 0.3s; }
+    .leistung:hover h3 { color: white; }
+    .leistung p { font-size: 0.88rem; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.32); max-width: 540px; transition: color 0.4s; }
+    .leistung:hover p { color: rgba(255,255,255,0.52); }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.9rem 2rem;
-      font-family: var(--font-body);
-      font-size: 0.88rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.35s var(--ease-out);
-      border: none;
-    }
-    .btn-primary {
-      background: var(--navy);
-      color: white;
-    }
-    .btn-primary:hover {
-      background: var(--navy-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(31,56,100,0.25);
-    }
-    .btn-ghost {
-      background: transparent;
-      color: var(--navy);
-      border: 1.5px solid rgba(31,56,100,0.2);
-    }
-    .btn-ghost:hover {
-      border-color: var(--navy);
-      background: rgba(31,56,100,0.03);
-    }
-    .btn-arrow {
-      transition: transform 0.3s var(--ease-out);
-    }
-    .btn:hover .btn-arrow { transform: translateX(3px); }
+    /* ── KANZLEI ── */
+    .kanzlei { background: linear-gradient(180deg, var(--dark) 0%, var(--cream) 35%); padding: clamp(8rem, 14vw, 12rem) 0 clamp(5rem, 10vw, 8rem); }
+    .kanzlei-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .kanzlei .section-label { color: var(--gold); opacity: 0.7; }
+    .kanzlei-heading { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; color: var(--navy); line-height: 1.2; margin-bottom: 2rem; }
+    .kanzlei-heading em { font-style: italic; font-weight: 400; }
+    .kanzlei-text { font-size: 0.92rem; font-weight: 300; line-height: 1.8; color: rgba(42,42,42,0.55); margin-bottom: 1.5rem; }
+    .kanzlei-quals { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem; }
+    .kanzlei-qual { font-family: var(--mono); font-size: 0.72rem; color: rgba(42,42,42,0.38); padding-left: 1.2rem; position: relative; }
+    .kanzlei-qual::before { content: ''; position: absolute; left: 0; top: 50%; width: 5px; height: 1px; background: var(--gold); }
+    .kanzlei-logo { width: 100%; max-width: 380px; margin-bottom: 3rem; opacity: 0.9; }
+    .kanzlei-quote { font-family: var(--serif); font-size: 1.3rem; font-style: italic; font-weight: 300; line-height: 1.5; color: var(--navy); padding: 2.5rem 0; border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); }
+    .kanzlei-quote::before { content: '»'; font-size: 3rem; color: var(--gold); line-height: 1; display: block; margin-bottom: 0.5rem; opacity: 0.5; }
+    .kanzlei-sig { font-family: var(--sans); font-size: 0.78rem; font-style: normal; color: rgba(42,42,42,0.35); margin-top: 1rem; display: block; }
 
-    /* Hero stats bar */
-    .hero-stats {
-      display: flex;
-      gap: 3.5rem;
-      margin-top: 4.5rem;
-      padding-top: 3rem;
-      border-top: 1px solid var(--stone);
-    }
-    .hero-stat-number {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      color: var(--navy);
-      line-height: 1;
-    }
-    .hero-stat-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.4rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 500;
-    }
+    /* ── TECH ── */
+    .tech { background: var(--cream); padding: clamp(4rem, 8vw, 6rem) 0; }
+    .tech .section-heading { color: var(--navy); margin-bottom: 3rem; }
+    .tech-flow { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tech-tag { font-family: var(--mono); font-size: 0.75rem; padding: 0.5rem 1rem; border: 1px solid rgba(31,56,100,0.1); color: rgba(42,42,42,0.45); transition: all 0.3s var(--ease); cursor: default; }
+    .tech-tag:hover { background: var(--navy); color: white; border-color: var(--navy); }
+    .tech-tag.accent { border-color: var(--gold); color: var(--navy); }
 
-    /* ═══════════════════════════════════════
-       SECTION COMMON
-    ═══════════════════════════════════════ */
-    section {
-      padding: clamp(5rem, 10vw, 8rem) 0;
-    }
-    .section-eyebrow {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-    .section-eyebrow::before {
-      content: '';
-      width: 30px;
-      height: 1.5px;
-      background: var(--gold);
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      color: var(--navy-deep);
-      line-height: 1.15;
-      max-width: 600px;
-      margin-bottom: 1.2rem;
-      letter-spacing: -0.01em;
-    }
-    .section-intro {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: var(--text-light);
-      max-width: 600px;
-      margin-bottom: 3.5rem;
-    }
+    /* ── KONTAKT ── */
+    .kontakt { background: var(--warm); padding: clamp(5rem, 10vw, 8rem) 0; }
+    .kontakt .section-heading { color: var(--navy); margin-bottom: 1rem; }
+    .kontakt-intro { font-size: 0.92rem; font-weight: 300; color: rgba(42,42,42,0.45); max-width: 500px; margin-bottom: 3.5rem; line-height: 1.7; }
+    .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .kontakt-block { margin-bottom: 2rem; }
+    .kontakt-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(42,42,42,0.25); margin-bottom: 0.4rem; }
+    .kontakt-value { font-size: 0.92rem; color: var(--text-dark); line-height: 1.6; }
+    .kontakt-value a { color: var(--navy); border-bottom: 1px solid rgba(31,56,100,0.12); transition: border-color 0.3s; }
+    .kontakt-value a:hover { border-color: var(--navy); }
+    .kontakt-hours { border-top: 1px solid var(--stone); padding-top: 1.5rem; }
+    .hours-row { display: flex; justify-content: space-between; padding: 0.35rem 0; font-size: 0.85rem; }
+    .hours-day { color: var(--text-dark); font-weight: 400; }
+    .hours-time { color: rgba(42,42,42,0.35); font-weight: 300; }
+    .kontakt-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+    .form-group label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(42,42,42,0.25); }
+    .form-group input, .form-group textarea { padding: 0.75rem 0; border: none; border-bottom: 1px solid var(--stone); background: transparent; font-family: var(--sans); font-size: 0.9rem; font-weight: 300; color: var(--text-dark); outline: none; transition: border-color 0.3s; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--navy); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .btn { font-family: var(--sans); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.85rem 2rem; border: none; cursor: pointer; transition: all 0.35s var(--ease); margin-top: 0.5rem; }
+    .btn-dark { background: var(--navy); color: white; }
+    .btn-dark:hover { background: var(--slate); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(31,56,100,0.2); }
 
-    /* ═══════════════════════════════════════
-       SERVICES
-    ═══════════════════════════════════════ */
-    #leistungen {
-      background: var(--warm-white);
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .service-card {
-      background: var(--cream);
-      border: 1px solid rgba(31,56,100,0.06);
-      border-radius: 8px;
-      padding: 2.2rem 2rem;
-      transition: all 0.45s var(--ease-out);
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--navy), var(--gold));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.45s var(--ease-out);
-    }
-    .service-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(31,56,100,0.08);
-      border-color: rgba(31,56,100,0.1);
-    }
-    .service-card:hover::before { transform: scaleX(1); }
+    /* ── FOOTER ── */
+    footer { background: var(--abyss); padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.18); }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-size: 0.72rem; color: rgba(255,255,255,0.18); transition: color 0.3s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.5); }
 
-    .service-number {
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      color: var(--gold);
-      margin-bottom: 1.2rem;
-      opacity: 0.7;
-    }
-    .service-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      color: var(--navy-deep);
-      margin-bottom: 0.8rem;
-      line-height: 1.25;
-    }
-    .service-card p {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      line-height: 1.65;
-    }
-
-    /* ═══════════════════════════════════════
-       ABOUT / KANZLEI
-    ═══════════════════════════════════════ */
-    #kanzlei {
-      background: var(--navy-deep);
-      color: white;
-      position: relative;
-      overflow: hidden;
-    }
-    #kanzlei::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -20%;
-      width: 60vw;
-      height: 120%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-      position: relative;
-      z-index: 2;
-    }
-    #kanzlei .section-eyebrow { color: var(--gold-soft); }
-    #kanzlei .section-eyebrow::before { background: var(--gold-soft); }
-    #kanzlei .section-title { color: white; }
-    #kanzlei .section-intro {
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 2rem;
-    }
-
-    .about-text {
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 2.5rem;
-    }
-
-    .qualifications {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.7rem 2rem;
-    }
-    .qual-item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.75);
-      padding: 0.4rem 0;
-    }
-    .qual-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--gold);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* About right: decorative card */
-    .about-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 12px;
-      padding: 3rem;
-      position: relative;
-    }
-    .about-card-quote {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-style: italic;
-      line-height: 1.45;
-      color: rgba(255,255,255,0.85);
-      margin-bottom: 2rem;
-    }
-    .about-card-quote::before {
-      content: '»';
-      display: block;
-      font-size: 3rem;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 0.8rem;
-    }
-    .about-card-sig {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    .about-card-sig strong {
-      color: rgba(255,255,255,0.8);
-      display: block;
-      margin-bottom: 0.2rem;
-    }
-
-    /* ═══════════════════════════════════════
-       TECHNOLOGY FIELDS
-    ═══════════════════════════════════════ */
-    #technologie {
-      background: var(--cream);
-    }
-    .tech-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-    .tech-tag {
-      padding: 0.55rem 1.3rem;
-      background: var(--warm-white);
-      border: 1px solid var(--stone);
-      border-radius: 100px;
-      font-size: 0.85rem;
-      color: var(--text-light);
-      font-weight: 500;
-      transition: all 0.3s var(--ease-out);
-      cursor: default;
-    }
-    .tech-tag:hover {
-      background: var(--navy);
-      color: white;
-      border-color: var(--navy);
-      transform: translateY(-2px);
-    }
-    .tech-tag.highlight {
-      background: var(--navy);
-      color: white;
-      border-color: var(--navy);
-    }
-
-    /* ═══════════════════════════════════════
-       MARQUEE / ÄMTER
-    ═══════════════════════════════════════ */
-    .marquee-section {
-      padding: 3rem 0;
-      background: var(--warm-white);
-      border-top: 1px solid var(--stone);
-      border-bottom: 1px solid var(--stone);
-      overflow: hidden;
-    }
-    .marquee-track {
-      display: flex;
-      gap: 4rem;
-      animation: marquee 30s linear infinite;
-      width: max-content;
-    }
-    .marquee-item {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-    }
-    .marquee-item::after {
-      content: '·';
-      color: var(--gold);
-      font-size: 1.6rem;
-    }
-
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* ═══════════════════════════════════════
-       CONTACT
-    ═══════════════════════════════════════ */
-    #kontakt {
-      background: var(--warm-white);
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-    }
-    .contact-info-block {
-      margin-bottom: 2.5rem;
-    }
-    .contact-info-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--text-muted);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .contact-info-value {
-      font-size: 1rem;
-      color: var(--text);
-      line-height: 1.65;
-    }
-    .contact-info-value a {
-      color: var(--navy);
-      border-bottom: 1px solid rgba(31,56,100,0.2);
-      transition: border-color 0.3s;
-    }
-    .contact-info-value a:hover {
-      border-color: var(--navy);
-    }
-
-    .contact-hours {
-      background: var(--cream);
-      border-radius: 8px;
-      padding: 2rem;
-      border: 1px solid rgba(31,56,100,0.06);
-    }
-    .contact-hours h4 {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: var(--navy);
-      margin-bottom: 1.2rem;
-    }
-    .hours-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.55rem 0;
-      font-size: 0.9rem;
-      border-bottom: 1px solid rgba(31,56,100,0.04);
-    }
-    .hours-row:last-child { border-bottom: none; }
-    .hours-day { color: var(--text); font-weight: 500; }
-    .hours-time { color: var(--text-light); }
-
-    /* Contact form */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-    .form-group label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-    .form-group input,
-    .form-group textarea {
-      padding: 0.85rem 1rem;
-      border: 1px solid var(--stone);
-      border-radius: 4px;
-      font-family: var(--font-body);
-      font-size: 0.92rem;
-      color: var(--text);
-      background: var(--cream);
-      transition: border-color 0.3s, box-shadow 0.3s;
-      outline: none;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--navy);
-      box-shadow: 0 0 0 3px rgba(31,56,100,0.08);
-    }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 130px;
-    }
-    .form-submit {
-      align-self: flex-start;
-    }
-
-    /* ═══════════════════════════════════════
-       MAP TEASER
-    ═══════════════════════════════════════ */
-    .map-bar {
-      background: var(--navy-deep);
-      color: white;
-      padding: 3rem 0;
-      text-align: center;
-    }
-    .map-bar p {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 0.3rem;
-    }
-    .map-bar strong {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      color: rgba(255,255,255,0.9);
-    }
-
-    /* ═══════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════ */
-    footer {
-      background: var(--navy-deep);
-      color: rgba(255,255,255,0.4);
-      padding: 2.5rem 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .footer-copy {
-      font-size: 0.82rem;
-    }
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .footer-links a {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.45);
-      transition: color 0.3s;
-    }
-    .footer-links a:hover { color: rgba(255,255,255,0.8); }
-
-    /* ═══════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════ */
+    /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .kanzlei-grid, .kontakt-grid { grid-template-columns: 1fr; gap: 3rem; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .nav-links.open {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--warm-white);
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        z-index: 1000;
-      }
-      .nav-links.open a { font-size: 1.2rem; }
-      .nav-hamburger { display: flex; }
-      .services-grid { grid-template-columns: 1fr; }
-      .hero-stats { flex-wrap: wrap; gap: 2rem; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-logo-area { justify-content: flex-start; }
-      .hero-logo-img { width: clamp(220px, 60vw, 320px); }
-      .qualifications { grid-template-columns: 1fr; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; background: rgba(5,8,16,0.97); justify-content: center; align-items: center; gap: 2rem; z-index: 100; }
+      .nav-links.open a { font-size: 1rem; color: rgba(255,255,255,0.6) !important; }
+      .hamburger { display: flex; }
+      .hero-meta { flex-wrap: wrap; gap: 1.5rem; }
+      .leistung { grid-template-columns: 1fr; gap: 0.5rem; }
       .form-row { grid-template-columns: 1fr; }
-      .hero h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══════ NAVIGATION ═══════ -->
   <nav class="nav" id="nav">
     <div class="container nav-inner">
-      <a href="#top" class="nav-brand">
-        <img src="logotiff.png" alt="Dr. Werner Riegel – Patentanwalt" class="nav-logo" />
-      </a>
+      <a href="#top"><img src="logotiff.png" alt="Dr. Werner Riegel" class="nav-logo" /></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#leistungen">Leistungen</a></li>
         <li><a href="#kanzlei">Kanzlei</a></li>
-        <li><a href="#technologie">Technologiefelder</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-        <li><a href="#kontakt" class="nav-cta">Beratung anfragen</a></li>
+        <li><a href="#technologie">Technologie</a></li>
+        <li><a href="#kontakt" class="nav-cta-link">Kontakt</a></li>
       </ul>
-      <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
-        <span></span><span></span><span></span>
-      </div>
+      <div class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
     </div>
   </nav>
 
-  <!-- ═══════ HERO ═══════ -->
+  <!-- ═══ HERO ═══ -->
   <section class="hero" id="top">
-    <div class="hero-pattern"></div>
-    <div class="container hero-content">
-      <div class="hero-grid">
-        <div class="hero-text">
-          <div class="hero-eyebrow reveal">Gewerblicher Rechtsschutz · Bodensee</div>
-          <h1 class="reveal reveal-delay-1">Schutz für <em>Ideen</em>, die Zukunft schaffen.</h1>
-          <p class="hero-sub reveal reveal-delay-2">
-            Persönliche Beratung auf höchstem fachlichen Niveau — von der ersten Recherche über die Anmeldung bis zur Erteilung und darüber hinaus. Für Erfinder, Start-ups und den Mittelstand.
-          </p>
-          <div class="hero-actions reveal reveal-delay-3">
-            <a href="#kontakt" class="btn btn-primary">
-              Erstgespräch vereinbaren
-              <span class="btn-arrow">→</span>
-            </a>
-            <a href="#leistungen" class="btn btn-ghost">Leistungsspektrum</a>
-          </div>
-        </div>
-        <div class="hero-logo-area reveal reveal-delay-2">
-          <img src="logotiff.png" alt="Dr. Werner Riegel – Patentanwalt · Diplom-Physiker · European Patent Attorney · European Trademark and Design Attorney" class="hero-logo-img" />
-        </div>
-      </div>
-      <div class="hero-stats reveal reveal-delay-4">
-        <div>
-          <div class="hero-stat-number">6</div>
-          <div class="hero-stat-label">Rechtsgebiete</div>
-        </div>
-        <div>
-          <div class="hero-stat-number">DE · EP · PCT</div>
-          <div class="hero-stat-label">Anmeldewege</div>
-        </div>
-        <div>
-          <div class="hero-stat-number">DPMA · EPA · EUIPO</div>
-          <div class="hero-stat-label">Zugelassene Ämter</div>
-        </div>
+    <div class="container hero-inner">
+      <p class="hero-claim r">Das Unsichtbare<br /><em>schützen.</em></p>
+      <p class="hero-sub r r1">Geistiges Eigentum ist das Paradoxon, das Unsichtbare zu besitzen. Ich gebe Ihren Ideen eine Form, die bleibt — und die wirkt.</p>
+      <div class="hero-meta r r2">
+        <div class="hero-meta-item"><span>§</span> PatG · EPÜ · MarkenG</div>
+        <div class="hero-meta-item"><span>↗</span> DE · EP · PCT · WIPO</div>
+        <div class="hero-meta-item"><span>◉</span> Markdorf am Bodensee</div>
       </div>
     </div>
+    <div class="hero-scroll"><div class="hero-scroll-line"></div>Entdecken</div>
   </section>
 
-  <!-- ═══════ MARQUEE ═══════ -->
-  <div class="marquee-section">
-    <div class="marquee-track">
-      <span class="marquee-item">Deutsches Patent- und Markenamt</span>
-      <span class="marquee-item">Europäisches Patentamt</span>
-      <span class="marquee-item">EUIPO Alicante</span>
-      <span class="marquee-item">WIPO Genf</span>
-      <span class="marquee-item">Unified Patent Court</span>
-      <!-- duplicate for seamless loop -->
-      <span class="marquee-item">Deutsches Patent- und Markenamt</span>
-      <span class="marquee-item">Europäisches Patentamt</span>
-      <span class="marquee-item">EUIPO Alicante</span>
-      <span class="marquee-item">WIPO Genf</span>
-      <span class="marquee-item">Unified Patent Court</span>
+  <!-- ═══ BRIDGE 1 ═══ -->
+  <div class="bridge bridge-dark">
+    <div class="container">
+      <p class="bridge-text r">Physik fragt: <em>Was ist?</em><br />Patentrecht fragt: <em>Wem gehört, was sein wird?</em></p>
+      <p class="bridge-ref r r1">— Über die Übersetzung zwischen den Welten</p>
     </div>
   </div>
 
-  <!-- ═══════ SERVICES ═══════ -->
-  <section id="leistungen">
+  <!-- ═══ LEISTUNGEN ═══ -->
+  <section class="leistungen" id="leistungen">
     <div class="container">
-      <div class="section-eyebrow reveal">Leistungsspektrum</div>
-      <h2 class="section-title reveal reveal-delay-1">Umfassender Schutz für Ihr geistiges Eigentum.</h2>
-      <p class="section-intro reveal reveal-delay-2">
-        Ich begleite Sie durch den gesamten Lebenszyklus Ihrer Schutzrechte — strategisch, präzise und mit persönlichem Engagement.
-      </p>
+      <div class="section-label r">Leistungsspektrum</div>
+      <h2 class="section-heading r r1">Fünf Disziplinen.<br />Ein Ansprechpartner.</h2>
+      <div class="leistung r"><div class="leistung-nr">§ 01</div><div><h3>Patente & Gebrauchsmuster</h3><p>Anmeldung und Verteidigung nationaler, europäischer und internationaler Schutzrechte. Belastbare Ansprüche, Stellungnahmen zu Prüfungsbescheiden, Einspruchs- und Nichtigkeitsverfahren.</p></div></div>
+      <div class="leistung r"><div class="leistung-nr">§ 02</div><div><h3>Marken & Designs</h3><p>Strategischer Aufbau Ihres Markenportfolios bei DPMA, EUIPO, WIPO und weiteren Ämtern weltweit. Recherchen, Widerspruchsverfahren, Löschung und Designschutz.</p></div></div>
+      <div class="leistung r"><div class="leistung-nr">§ 03</div><div><h3>Recherche & FTO</h3><p>Patent-, Marken- und Freedom-to-Operate-Recherchen als Entscheidungsgrundlage. Neuheitsbewertung nach § 3 PatG bzw. Art. 54 EPÜ.</p></div></div>
+      <div class="leistung r"><div class="leistung-nr">§ 04</div><div><h3>Verletzung & Durchsetzung</h3><p>Patent-, Marken- und Designverletzungen. Abmahnungen, UDRP-Verfahren, einstweilige Verfügungen in Zusammenarbeit mit spezialisierten Rechtsanwälten.</p></div></div>
+      <div class="leistung r"><div class="leistung-nr">§ 05</div><div><h3>Verträge & Lizenzen</h3><p>Lizenz-, Know-how- und Entwicklungsverträge. IP-Due-Diligence, Arbeitnehmererfindungsrecht nach ArbNErfG, Geheimhaltungsvereinbarungen.</p></div></div>
 
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <div class="service-number">I.</div>
-          <h3>Patente & Gebrauchsmuster</h3>
-          <p>Anmeldung und Verteidigung nationaler (DE), europäischer (EP) und internationaler (PCT) Schutzrechte. Erstellung belastbarer Ansprüche, Stellungnahmen zu Prüfungsbescheiden, Einspruchs- und Nichtigkeitsverfahren.</p>
-        </div>
-        <div class="service-card reveal reveal-delay-1">
-          <div class="service-number">II.</div>
-          <h3>Marken & Designs</h3>
-          <p>Strategischer Aufbau und Verteidigung Ihres Markenportfolios bei DPMA, EUIPO, WIPO und weiteren Ämtern weltweit. Recherchen, Widerspruchsverfahren, Löschungsverfahren sowie Designschutz.</p>
-        </div>
-        <div class="service-card reveal reveal-delay-2">
-          <div class="service-number">III.</div>
-          <h3>Recherche & FTO</h3>
-          <p>Fundierte Patent-, Marken- und FTO-Recherchen als Grundlage für Anmelde-, Produkt- und Investitionsentscheidungen. Neuheitsbewertung nach § 3 PatG bzw. Art. 54 EPÜ.</p>
-        </div>
-        <div class="service-card reveal reveal-delay-3">
-          <div class="service-number">IV.</div>
-          <h3>Verletzung & Durchsetzung</h3>
-          <p>Durchsetzung und Verteidigung bei Patent-, Marken- und Designverletzungen. Abmahnungen, UDRP-Verfahren und gerichtliche Vertretung in Zusammenarbeit mit spezialisierten Rechtsanwälten.</p>
-        </div>
-        <div class="service-card reveal reveal-delay-4">
-          <div class="service-number">V.</div>
-          <h3>Verträge & Lizenzen</h3>
-          <p>Gestaltung und Prüfung von Lizenz-, Know-how- und Entwicklungsverträgen. IP-Due-Diligence, Arbeitnehmererfindungsrecht (ArbNErfG) und Geheimhaltungsvereinbarungen.</p>
-        </div>
-        <div class="service-card reveal reveal-delay-5">
-          <div class="service-number">VI.</div>
-          <h3>CII, Software & KI</h3>
-          <p>Spezialisierte Beratung für computer-implementierte Erfindungen, Software- und KI-Patente. Beurteilung der Technizität nach § 1 PatG und Art. 52 EPÜ und strategische Anspruchsformulierung.</p>
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- ═══════ ABOUT ═══════ -->
-  <section id="kanzlei">
+  <!-- ═══ BRIDGE 2 ═══ -->
+  <div class="bridge bridge-mid">
     <div class="container">
-      <div class="about-grid">
+      <p class="bridge-text r">Ein Patentanspruch ist wie eine <em>physikalische Gleichung</em> — er beschreibt nicht das Ding selbst, sondern den Raum, den es einnimmt.</p>
+      <p class="bridge-ref r r1">— Über die Architektur des Anspruchs</p>
+    </div>
+  </div>
+
+  <!-- ═══ KANZLEI ═══ -->
+  <section class="kanzlei" id="kanzlei">
+    <div class="container">
+      <div class="kanzlei-grid">
         <div>
-          <div class="section-eyebrow reveal">Die Kanzlei</div>
-          <h2 class="section-title reveal reveal-delay-1">Physik trifft Patentrecht.</h2>
-          <p class="section-intro reveal reveal-delay-2">
-            Als Diplom-Physiker und Patentanwalt verbinde ich naturwissenschaftliche Analyse mit der formalen Strenge des gewerblichen Rechtsschutzes.
-          </p>
-          <p class="about-text reveal reveal-delay-3">
-            Jedes Mandat ist für mich eine Übersetzungsaufgabe: die Erfindung verstehen, das Wesentliche identifizieren und in einem Schutzumfang abbilden, der belastbar und zugleich strategisch tragfähig ist. Die Kanzlei arbeitet bewusst persönlich — Sie erhalten keinen anonymen Prozess, sondern einen durchgängigen Ansprechpartner vom ersten Gespräch bis zur Erteilung und darüber hinaus.
-          </p>
-          <div class="qualifications reveal reveal-delay-4">
-            <div class="qual-item"><span class="qual-dot"></span>Patentanwalt (DPMA)</div>
-            <div class="qual-item"><span class="qual-dot"></span>European Patent Attorney</div>
-            <div class="qual-item"><span class="qual-dot"></span>European Trademark Attorney</div>
-            <div class="qual-item"><span class="qual-dot"></span>European Design Attorney</div>
-            <div class="qual-item"><span class="qual-dot"></span>Diplom-Physiker</div>
-            <div class="qual-item"><span class="qual-dot"></span>Vertreter vor dem UPC</div>
-            <div class="qual-item"><span class="qual-dot"></span>Mitglied der PAK</div>
-            <div class="qual-item"><span class="qual-dot"></span>epi — Institute of Prof. Repr.</div>
+          <div class="section-label r">Die Kanzlei</div>
+          <h2 class="kanzlei-heading r r1">Zwischen <em>Erkenntnis</em><br />und Anspruch.</h2>
+          <p class="kanzlei-text r r2">Als Diplom-Physiker und Patentanwalt verbinde ich naturwissenschaftliche Analyse mit der formalen Strenge des gewerblichen Rechtsschutzes. Jedes Mandat ist eine Übersetzungsaufgabe: die Erfindung verstehen, das Wesentliche identifizieren, und in einem Schutzumfang abbilden, der belastbar und strategisch tragfähig ist.</p>
+          <p class="kanzlei-text r r2">Kein anonymer Prozess, kein Sachbearbeiter-Wechsel — ein durchgängiger Ansprechpartner vom ersten Gespräch bis zur Erteilung und darüber hinaus.</p>
+          <div class="kanzlei-quals r r3">
+            <div class="kanzlei-qual">Patentanwalt (DPMA)</div>
+            <div class="kanzlei-qual">European Patent Attorney (EPA)</div>
+            <div class="kanzlei-qual">European Trademark and Design Attorney</div>
+            <div class="kanzlei-qual">Vertreter vor dem Unified Patent Court</div>
+            <div class="kanzlei-qual">Diplom-Physiker · Dr. rer. nat.</div>
+            <div class="kanzlei-qual">Mitglied der Patentanwaltskammer</div>
+            <div class="kanzlei-qual">epi — Institute of Professional Representatives</div>
           </div>
         </div>
-        <div class="reveal reveal-delay-3">
-          <div class="about-card">
-            <div class="about-card-quote">
-              Jede Erfindung verdient einen Schutzumfang, der so präzise ist wie die Idee selbst.
-            </div>
-            <div class="about-card-sig">
-              <strong>Dr. Werner Riegel</strong>
-              Patentanwalt · Diplom-Physiker<br />
-              Kanzlei Riegel-IP, Markdorf am Bodensee
-            </div>
-          </div>
+        <div>
+          <img src="logotiff.png" alt="Dr. Werner Riegel – Patentanwalt" class="kanzlei-logo r" />
+          <div class="kanzlei-quote r r1">Ideen sind wie Teilchen — erst wenn man sie präzise beschreibt, nehmen sie eine Wirkung an.<span class="kanzlei-sig">Dr. Werner Riegel · Patentanwalt · Diplom-Physiker</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════ TECHNOLOGY FIELDS ═══════ -->
-  <section id="technologie">
+  <!-- ═══ BRIDGE 3 ═══ -->
+  <div class="bridge bridge-light">
     <div class="container">
-      <div class="section-eyebrow reveal">Technologiefelder</div>
-      <h2 class="section-title reveal reveal-delay-1">Breit aufgestellt. Technisch fundiert.</h2>
-      <p class="section-intro reveal reveal-delay-2">
-        Dank meiner naturwissenschaftlichen Ausbildung bearbeite ich Erfindungen und Technologien aus einer Vielzahl von Fachgebieten.
-      </p>
-      <div class="tech-grid reveal reveal-delay-3">
-        <span class="tech-tag highlight">Künstliche Intelligenz</span>
-        <span class="tech-tag highlight">Software & CII</span>
+      <p class="bridge-text r">20 Jahre Verbietungsrecht.<br />Oder 20 Minuten bis zur Nachahmung.<br /><em>Die Entscheidung fällt jetzt.</em></p>
+    </div>
+  </div>
+
+  <!-- ═══ TECHNOLOGIE ═══ -->
+  <section class="tech" id="technologie">
+    <div class="container">
+      <div class="section-label r">Technologiefelder</div>
+      <h2 class="section-heading r r1">Breit fundiert.<br />Physikalisch geprägt.</h2>
+      <div class="tech-flow r r2">
         <span class="tech-tag">Maschinenbau</span>
         <span class="tech-tag">Medizintechnik</span>
         <span class="tech-tag">Mechatronik</span>
@@ -1007,198 +307,66 @@
     </div>
   </section>
 
-  <!-- ═══════ CONTACT ═══════ -->
-  <section id="kontakt">
+  <!-- ═══ KONTAKT ═══ -->
+  <section class="kontakt" id="kontakt">
     <div class="container">
-      <div class="section-eyebrow reveal">Kontakt</div>
-      <h2 class="section-title reveal reveal-delay-1">Sprechen wir über Ihr Schutzrecht.</h2>
-      <p class="section-intro reveal reveal-delay-2">
-        Ein erstes Orientierungsgespräch ist unverbindlich. Schildern Sie mir Ihr Anliegen — ich melde mich zeitnah bei Ihnen.
-      </p>
-
-      <div class="contact-grid">
-        <div class="reveal reveal-delay-2">
-          <div class="contact-info-block">
-            <div class="contact-info-label">Anschrift</div>
-            <div class="contact-info-value">
-              Panoramaweg 2/1<br />88677 Markdorf
-            </div>
-          </div>
-          <div class="contact-info-block">
-            <div class="contact-info-label">Telefon</div>
-            <div class="contact-info-value">
-              <a href="tel:+4915117868568">+49 (0) 151 178 68 568</a>
-            </div>
-          </div>
-          <div class="contact-info-block">
-            <div class="contact-info-label">E-Mail</div>
-            <div class="contact-info-value">
-              <a href="mailto:patent@riegel-markdorf.de">patent@riegel-markdorf.de</a>
-            </div>
-          </div>
-
-          <div class="contact-hours">
-            <h4>Sprechzeiten</h4>
-            <div class="hours-row">
-              <span class="hours-day">Montag – Donnerstag</span>
-              <span class="hours-time">09:00 – 18:00</span>
-            </div>
-            <div class="hours-row">
-              <span class="hours-day">Freitag</span>
-              <span class="hours-time">09:00 – 16:00</span>
-            </div>
-            <div class="hours-row">
-              <span class="hours-day">Samstag & Sonntag</span>
-              <span class="hours-time">nach Vereinbarung</span>
-            </div>
+      <div class="section-label r">Kontakt</div>
+      <h2 class="section-heading r r1">Bevor Sie die Welt verändern&nbsp;—<br />lassen Sie uns reden.</h2>
+      <p class="kontakt-intro r r2">Ein erstes Orientierungsgespräch ist unverbindlich. Schildern Sie mir Ihr Anliegen.</p>
+      <div class="kontakt-grid">
+        <div class="r r2">
+          <div class="kontakt-block"><div class="kontakt-label">Anschrift</div><div class="kontakt-value">Panoramaweg 2/1<br />88677 Markdorf</div></div>
+          <div class="kontakt-block"><div class="kontakt-label">Telefon</div><div class="kontakt-value"><a href="tel:+4915117868568">+49 (0) 151 178 68 568</a></div></div>
+          <div class="kontakt-block"><div class="kontakt-label">E-Mail</div><div class="kontakt-value"><a href="mailto:patent@riegel-markdorf.de">patent@riegel-markdorf.de</a></div></div>
+          <div class="kontakt-hours">
+            <div class="kontakt-label" style="margin-bottom:0.6rem">Sprechzeiten</div>
+            <div class="hours-row"><span class="hours-day">Montag – Donnerstag</span><span class="hours-time">09:00 – 18:00</span></div>
+            <div class="hours-row"><span class="hours-day">Freitag</span><span class="hours-time">09:00 – 16:00</span></div>
+            <div class="hours-row"><span class="hours-day">Wochenende</span><span class="hours-time">nach Vereinbarung</span></div>
           </div>
         </div>
-
-        <div class="reveal reveal-delay-3">
-          <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="r r3">
+          <form class="kontakt-form" onsubmit="handleSubmit(event)">
             <div class="form-row">
-              <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Ihr Name" required />
-              </div>
-              <div class="form-group">
-                <label for="email">E-Mail</label>
-                <input type="email" id="email" placeholder="ihre@email.de" required />
-              </div>
+              <div class="form-group"><label for="name">Name</label><input type="text" id="name" required /></div>
+              <div class="form-group"><label for="email">E-Mail</label><input type="email" id="email" required /></div>
             </div>
-            <div class="form-group">
-              <label for="subject">Betreff</label>
-              <input type="text" id="subject" placeholder="z. B. Patentanmeldung, Markenrecherche …" />
-            </div>
-            <div class="form-group">
-              <label for="message">Nachricht</label>
-              <textarea id="message" placeholder="Beschreiben Sie kurz Ihr Anliegen …" required></textarea>
-            </div>
-            <div class="form-submit">
-              <button type="submit" class="btn btn-primary">
-                Nachricht senden
-                <span class="btn-arrow">→</span>
-              </button>
-            </div>
+            <div class="form-group"><label for="betreff">Betreff</label><input type="text" id="betreff" /></div>
+            <div class="form-group"><label for="msg">Ihr Anliegen</label><textarea id="msg" required></textarea></div>
+            <button type="submit" class="btn btn-dark">Nachricht senden →</button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════ MAP BAR ═══════ -->
-  <div class="map-bar">
-    <div class="container">
-      <p>Markdorf am Bodensee</p>
-      <strong>Panoramaweg 2/1 · 88677 Markdorf · Deutschland</strong>
-    </div>
-  </div>
-
-  <!-- ═══════ FOOTER ═══════ -->
   <footer>
     <div class="container footer-inner">
-      <div class="footer-copy">
-        &copy; 2026 Kanzlei Dr. Werner Riegel · Alle Rechte vorbehalten.
-      </div>
+      <div class="footer-copy">&copy; 2026 Kanzlei Dr. Werner Riegel · Markdorf am Bodensee</div>
       <ul class="footer-links">
         <li><a href="impressum.html">Impressum</a></li>
         <li><a href="datenschutz.html">Datenschutz</a></li>
-        <li><a href="berufsrecht.html">Berufsrechtliche Angaben</a></li>
+        <li><a href="berufsrecht.html">Berufsrecht</a></li>
       </ul>
     </div>
   </footer>
 
-  <!-- ═══════ SCRIPTS ═══════ -->
   <script>
-    /* Scroll-aware nav */
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-    });
-
-    /* Mobile nav toggle */
-    function toggleNav() {
-      document.getElementById('navLinks').classList.toggle('open');
+    const lightSections = document.querySelectorAll('.kanzlei, .tech, .kontakt, .bridge-light');
+    function updateNav() {
+      nav.classList.toggle('scrolled', scrollY > 60);
+      const nr = nav.getBoundingClientRect();
+      let ol = false;
+      lightSections.forEach(s => { const r = s.getBoundingClientRect(); if (r.top < nr.bottom && r.bottom > nr.top) ol = true; });
+      nav.classList.toggle('light', ol);
     }
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('navLinks').classList.remove('open');
-      });
-    });
-
-    /* Intersection Observer for reveal animations */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    /* Form handler (placeholder) */
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.innerHTML = 'Nachricht gesendet ✓';
-      btn.style.background = '#2B8A3E';
-      setTimeout(() => {
-        btn.innerHTML = 'Nachricht senden <span class="btn-arrow">→</span>';
-        btn.style.background = '';
-        e.target.reset();
-      }, 3000);
-    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+    const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add('v'); }); }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+    function handleSubmit(e) { e.preventDefault(); const b = e.target.querySelector('button'); b.textContent = 'Gesendet ✓'; b.style.background = '#2B8A3E'; setTimeout(() => { b.textContent = 'Nachricht senden →'; b.style.background = ''; e.target.reset(); }, 3000); }
   </script>
-
-  <!-- ═══════ COOKIE BANNER ═══════ -->
-  <div class="cookie-banner" id="cookieBanner">
-    <div class="cookie-inner">
-      <div class="cookie-text">
-        <strong>Hinweis zu Cookies</strong>
-        <p>Diese Website verwendet ausschließlich technisch notwendige Cookies. Es findet kein Tracking statt. Weitere Informationen finden Sie in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-      </div>
-      <button class="cookie-btn" onclick="acceptCookies()">Verstanden</button>
-    </div>
-  </div>
-  <style>
-    .cookie-banner {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
-      background: var(--navy-deep); color: rgba(255,255,255,0.85);
-      padding: 1.2rem 0; transform: translateY(100%);
-      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
-      box-shadow: 0 -4px 30px rgba(0,0,0,0.15);
-    }
-    .cookie-banner.show { transform: translateY(0); }
-    .cookie-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 4vw, 3rem);
-      display: flex; align-items: center; gap: 2rem; justify-content: space-between;
-    }
-    .cookie-text strong { display: block; margin-bottom: 0.3rem; font-size: 0.9rem; color: white; }
-    .cookie-text p { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin: 0; line-height: 1.5; }
-    .cookie-text a { color: var(--gold-soft, #D4B968); border-bottom: 1px solid rgba(212,185,104,0.3); }
-    .cookie-text a:hover { border-color: var(--gold-soft, #D4B968); }
-    .cookie-btn {
-      background: white; color: var(--navy-deep); border: none; padding: 0.6rem 1.8rem;
-      font-family: var(--font-body); font-size: 0.85rem; font-weight: 600;
-      border-radius: 4px; cursor: pointer; white-space: nowrap;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .cookie-btn:hover { background: var(--cream); transform: translateY(-1px); }
-    @media (max-width: 640px) {
-      .cookie-inner { flex-direction: column; align-items: stretch; gap: 1rem; }
-      .cookie-btn { text-align: center; }
-    }
-  </style>
-  <script>
-    if (!localStorage.getItem('cookies_accepted')) {
-      setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1200);
-    }
-    function acceptCookies() {
-      localStorage.setItem('cookies_accepted', 'true');
-      document.getElementById('cookieBanner').classList.remove('show');
-    }
-  </script>
-
 </body>
 </html>
