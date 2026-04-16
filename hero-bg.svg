@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <style>
+      .line { fill: none; stroke: #1F3864; stroke-width: 0.5; opacity: 0.04; }
+      .line-thin { fill: none; stroke: #1F3864; stroke-width: 0.3; opacity: 0.03; }
+      .shape { fill: none; stroke: #1F3864; stroke-width: 0.5; opacity: 0.045; }
+      .shape-fill { fill: #1F3864; opacity: 0.015; }
+      .dot { fill: #C9A84C; opacity: 0.04; }
+      .text-element { font-family: 'Georgia', serif; fill: #1F3864; opacity: 0.025; }
+    </style>
+  </defs>
+
+  <!-- Background gradient -->
+  <rect width="1200" height="800" fill="url(#bgGrad)" />
+  <defs>
+    <radialGradient id="bgGrad" cx="70%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FAF8F4" />
+      <stop offset="100%" stop-color="#F3F0EA" />
+    </radialGradient>
+  </defs>
+
+  <!-- === GEAR 1 (top right) === -->
+  <g transform="translate(950, 120)" class="shape">
+    <circle cx="0" cy="0" r="55" />
+    <circle cx="0" cy="0" r="20" />
+    <!-- Teeth -->
+    <rect x="-5" y="-65" width="10" height="15" rx="2" transform="rotate(0)" />
+    <rect x="-5" y="-65" width="10" height="15" rx="2" transform="rotate(45)" />
+    <rect x="-5" y="-65" width="10" height="15" rx="2" transform="rotate(90)" />
+    <rect x="-5" y="-65" width="10" height="15" rx="2" transform="rotate(135)" />
+    <rect x="-5" y="-65" width="10" height="15" rx="2" transform="rotate(180)" />
+    <rect x="-5" y="-65" width="10" height="15" rx="2" transform="rotate(225)" />
+    <rect x="-5" y="-65" width="10" height="15" rx="2" transform="rotate(270)" />
+    <rect x="-5" y="-65" width="10" height="15" rx="2" transform="rotate(315)" />
+  </g>
+
+  <!-- === GEAR 2 (smaller, interlocking) === -->
+  <g transform="translate(1020, 195)" class="shape">
+    <circle cx="0" cy="0" r="32" />
+    <circle cx="0" cy="0" r="12" />
+    <rect x="-4" y="-40" width="8" height="11" rx="2" transform="rotate(22.5)" />
+    <rect x="-4" y="-40" width="8" height="11" rx="2" transform="rotate(82.5)" />
+    <rect x="-4" y="-40" width="8" height="11" rx="2" transform="rotate(142.5)" />
+    <rect x="-4" y="-40" width="8" height="11" rx="2" transform="rotate(202.5)" />
+    <rect x="-4" y="-40" width="8" height="11" rx="2" transform="rotate(262.5)" />
+    <rect x="-4" y="-40" width="8" height="11" rx="2" transform="rotate(322.5)" />
+  </g>
+
+  <!-- === LIGHTBULB (center-left) === -->
+  <g transform="translate(180, 350)" class="shape">
+    <!-- Bulb -->
+    <path d="M0,-45 C-25,-45 -40,-20 -40,5 C-40,20 -28,32 -18,40 L-18,55 L18,55 L18,40 C28,32 40,20 40,5 C40,-20 25,-45 0,-45 Z" />
+    <!-- Filament -->
+    <path d="M-8,0 Q-4,-15 0,0 Q4,15 8,0" class="line-thin" />
+    <!-- Base -->
+    <line x1="-15" y1="48" x2="15" y2="48" />
+    <line x1="-13" y1="53" x2="13" y2="53" />
+    <line x1="-10" y1="58" x2="10" y2="58" />
+  </g>
+
+  <!-- === PATENT SEAL (bottom right) === -->
+  <g transform="translate(1050, 600)">
+    <circle cx="0" cy="0" r="60" class="shape" />
+    <circle cx="0" cy="0" r="52" class="shape" />
+    <circle cx="0" cy="0" r="48" class="line-thin" />
+    <!-- Star in center -->
+    <polygon points="0,-18 4,-6 17,-6 7,2 11,15 0,7 -11,15 -7,2 -17,-6 -4,-6" class="shape" />
+    <!-- Decorative dots around seal -->
+    <circle cx="0" cy="-55" r="2" class="dot" />
+    <circle cx="39" cy="-39" r="2" class="dot" />
+    <circle cx="55" cy="0" r="2" class="dot" />
+    <circle cx="39" cy="39" r="2" class="dot" />
+    <circle cx="0" cy="55" r="2" class="dot" />
+    <circle cx="-39" cy="39" r="2" class="dot" />
+    <circle cx="-55" cy="0" r="2" class="dot" />
+    <circle cx="-39" cy="-39" r="2" class="dot" />
+    <!-- Text arc hint -->
+    <text class="text-element" font-size="7" text-anchor="middle">
+      <textPath href="#sealArc">P A T E N T</textPath>
+    </text>
+    <path id="sealArc" d="M-45,-25 A52,52 0 0,1 45,-25" fill="none" />
+  </g>
+
+  <!-- === CIRCUIT / CONNECTION LINES === -->
+  <g class="line-thin">
+    <!-- Horizontal circuit traces -->
+    <path d="M0,500 L80,500 L80,480 L160,480 L160,500 L240,500" />
+    <circle cx="80" cy="480" r="3" class="dot" />
+    <circle cx="160" cy="480" r="3" class="dot" />
+    <circle cx="240" cy="500" r="3" class="dot" />
+
+    <!-- Diagonal traces -->
+    <path d="M900,400 L940,400 L960,380 L1020,380 L1040,400 L1100,400" />
+    <circle cx="960" cy="380" r="2.5" class="dot" />
+    <circle cx="1020" cy="380" r="2.5" class="dot" />
+  </g>
+
+  <!-- === CHEMICAL MOLECULE (top left) === -->
+  <g transform="translate(100, 120)" class="line">
+    <circle cx="0" cy="0" r="8" />
+    <circle cx="50" cy="-30" r="8" />
+    <circle cx="50" cy="30" r="8" />
+    <circle cx="100" cy="0" r="8" />
+    <line x1="7" y1="-4" x2="43" y2="-26" />
+    <line x1="7" y1="4" x2="43" y2="26" />
+    <line x1="57" y1="-26" x2="93" y2="-4" />
+    <line x1="57" y1="26" x2="93" y2="4" />
+  </g>
+
+  <!-- === BLUEPRINT GRID (faint, center area) === -->
+  <g class="line-thin" opacity="0.5">
+    <line x1="400" y1="200" x2="800" y2="200" />
+    <line x1="400" y1="250" x2="800" y2="250" />
+    <line x1="400" y1="300" x2="800" y2="300" />
+    <line x1="400" y1="350" x2="800" y2="350" />
+    <line x1="400" y1="200" x2="400" y2="350" />
+    <line x1="500" y1="200" x2="500" y2="350" />
+    <line x1="600" y1="200" x2="600" y2="350" />
+    <line x1="700" y1="200" x2="700" y2="350" />
+    <line x1="800" y1="200" x2="800" y2="350" />
+  </g>
+
+  <!-- === TECHNICAL DRAWING HINT (bottom left) === -->
+  <g transform="translate(80, 650)" class="shape">
+    <!-- Simple isometric box -->
+    <path d="M0,0 L40,-20 L100,-20 L60,0 Z" />
+    <path d="M0,0 L0,40 L60,40 L60,0" />
+    <path d="M60,0 L100,-20 L100,20 L60,40" />
+    <!-- Dimension line -->
+    <line x1="0" y1="50" x2="60" y2="50" class="line-thin" />
+    <line x1="0" y1="45" x2="0" y2="55" class="line-thin" />
+    <line x1="60" y1="45" x2="60" y2="55" class="line-thin" />
+  </g>
+
+  <!-- === PATENT PARAGRAPH SYMBOL §  === -->
+  <text x="520" y="580" class="text-element" font-size="120" opacity="0.018">§</text>
+
+  <!-- === SMALL SCATTERED ELEMENTS === -->
+  <!-- Tiny gears -->
+  <circle cx="350" cy="100" r="15" class="shape" opacity="0.5" />
+  <circle cx="350" cy="100" r="6" class="shape" opacity="0.5" />
+
+  <circle cx="750" cy="650" r="20" class="shape" opacity="0.4" />
+  <circle cx="750" cy="650" r="8" class="shape" opacity="0.4" />
+
+  <!-- Scattered dots (connection nodes) -->
+  <circle cx="300" cy="450" r="2" class="dot" />
+  <circle cx="450" cy="150" r="2" class="dot" />
+  <circle cx="680" cy="520" r="2" class="dot" />
+  <circle cx="870" cy="280" r="2" class="dot" />
+  <circle cx="150" cy="550" r="2" class="dot" />
+
+  <!-- Faint connecting lines between dots -->
+  <line x1="300" y1="450" x2="450" y2="150" class="line-thin" />
+  <line x1="680" y1="520" x2="870" y2="280" class="line-thin" />
+
+  <!-- === COMPASS / PROTRACTOR ARC (right center) === -->
+  <g transform="translate(850, 500)" class="line">
+    <path d="M-50,0 A50,50 0 0,1 0,-50" fill="none" />
+    <line x1="0" y1="0" x2="-50" y2="0" />
+    <line x1="0" y1="0" x2="0" y2="-50" />
+    <line x1="0" y1="0" x2="-35" y2="-35" />
+    <!-- Center point -->
+    <circle cx="0" cy="0" r="2" class="dot" />
+  </g>
+
+  <!-- === WAVY INNOVATION LINE === -->
+  <path d="M0,750 Q100,720 200,740 Q300,760 400,730 Q500,700 600,720 Q700,740 800,710 Q900,680 1000,700 Q1100,720 1200,700" class="line-thin" />
+
+</svg>
