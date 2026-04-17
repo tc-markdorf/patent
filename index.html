@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dr. Werner Riegel — Patentanwalt · Das Unsichtbare schützen</title>
   <meta name="description" content="Kanzlei Riegel-IP in Markdorf am Bodensee. Patentanwalt, European Patent Attorney, European Trademark and Design Attorney. Patente, Marken, Designs." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fonts.css" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -21,19 +19,19 @@
       --cream: #F5F2EC;
       --warm: #FEFCF8;
       --stone: #E0DBD2;
-      --text-dark: #2A2A2A;
-      --serif: 'Cormorant Garamond', 'Georgia', serif;
-      --sans: 'Outfit', -apple-system, sans-serif;
-      --mono: 'JetBrains Mono', 'Consolas', monospace;
+      --text-dark: #1F1F1F;
+      --serif: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+      --sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'JetBrains Mono', 'Consolas', 'Menlo', monospace;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
-    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-    body { font-family: var(--sans); color: white; background: var(--abyss); overflow-x: hidden; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; font-size: 16px; }
+    body { font-family: var(--sans); color: white; background: var(--abyss); overflow-x: hidden; font-weight: 300; }
     ::selection { background: var(--gold); color: var(--abyss); }
     a { color: inherit; text-decoration: none; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
 
-    /* Reveal */
+    /* Reveal animation */
     .r { opacity: 0; transform: translateY(50px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
     .r.v { opacity: 1; transform: translateY(0); }
     .r1 { transition-delay: 0.15s; }
@@ -42,23 +40,23 @@
 
     /* ── NAV ── */
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 0; transition: all 0.6s var(--ease); }
-    .nav.scrolled { background: rgba(5,8,16,0.85); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); padding: 0.8rem 0; }
+    .nav.scrolled { background: rgba(5,8,16,0.88); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); padding: 0.9rem 0; }
     .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-    .nav-logo { height: 38px; width: auto; filter: brightness(0) invert(1); opacity: 0.9; transition: all 0.4s; }
-    .nav.scrolled .nav-logo { height: 30px; }
+    .nav-logo { height: 42px; width: auto; filter: brightness(0) invert(1); opacity: 0.9; transition: all 0.4s; }
+    .nav.scrolled .nav-logo { height: 34px; }
     .nav.light { background: rgba(245,242,236,0.9); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); }
     .nav.light .nav-logo { filter: none; opacity: 1; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-    .nav-links a { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); transition: color 0.3s; }
+    .nav-links a { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); transition: color 0.3s; }
     .nav-links a:hover { color: rgba(255,255,255,0.95); }
-    .nav.light .nav-links a { color: rgba(42,42,42,0.45); }
+    .nav.light .nav-links a { color: rgba(31,31,31,0.5); }
     .nav.light .nav-links a:hover { color: var(--navy); }
-    .nav-cta-link { color: var(--gold) !important; border: 1px solid var(--gold-dim); padding: 0.5rem 1.2rem; border-radius: 2px; transition: all 0.3s !important; }
+    .nav-cta-link { color: var(--gold) !important; border: 1px solid var(--gold-dim); padding: 0.55rem 1.3rem; border-radius: 2px; transition: all 0.3s !important; }
     .nav-cta-link:hover { background: var(--gold) !important; color: var(--abyss) !important; }
     .nav.light .nav-cta-link { color: var(--navy) !important; border-color: rgba(31,56,100,0.2); }
     .nav.light .nav-cta-link:hover { background: var(--navy) !important; color: white !important; }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; }
-    .hamburger span { width: 22px; height: 1.5px; background: rgba(255,255,255,0.7); transition: 0.3s; }
+    .hamburger span { width: 24px; height: 1.5px; background: rgba(255,255,255,0.7); transition: 0.3s; }
     .nav.light .hamburger span { background: var(--navy); }
 
     /* ── HERO ── */
@@ -66,114 +64,118 @@
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background:
-        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.15), transparent),
-        radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.1), transparent),
-        radial-gradient(1.5px 1.5px at 50% 40%, rgba(201,168,76,0.12), transparent),
-        radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.08), transparent),
-        radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.12), transparent),
-        radial-gradient(1px 1px at 15% 85%, rgba(201,168,76,0.08), transparent),
-        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.06), transparent),
-        radial-gradient(1px 1px at 90% 35%, rgba(255,255,255,0.1), transparent),
-        radial-gradient(1.5px 1.5px at 40% 55%, rgba(201,168,76,0.1), transparent),
-        radial-gradient(1px 1px at 75% 80%, rgba(255,255,255,0.08), transparent);
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.18), transparent),
+        radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.12), transparent),
+        radial-gradient(1.5px 1.5px at 50% 40%, rgba(201,168,76,0.14), transparent),
+        radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.1), transparent),
+        radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.14), transparent),
+        radial-gradient(1px 1px at 15% 85%, rgba(201,168,76,0.1), transparent),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.08), transparent),
+        radial-gradient(1px 1px at 90% 35%, rgba(255,255,255,0.12), transparent),
+        radial-gradient(1.5px 1.5px at 40% 55%, rgba(201,168,76,0.12), transparent),
+        radial-gradient(1px 1px at 75% 80%, rgba(255,255,255,0.1), transparent);
       animation: drift 30s ease-in-out infinite alternate;
     }
     @keyframes drift { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 1; transform: scale(1.05); } }
-    .hero::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 60vw; height: 60vh; background: radial-gradient(ellipse, rgba(31,56,100,0.12), transparent 70%); pointer-events: none; }
+    .hero::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 60vw; height: 60vh; background: radial-gradient(ellipse, rgba(31,56,100,0.15), transparent 70%); pointer-events: none; }
     .hero-inner { position: relative; z-index: 2; padding: 10rem 0 6rem; }
-    .hero-claim { font-family: var(--serif); font-size: clamp(3rem, 6.5vw, 6rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; color: rgba(255,255,255,0.92); }
-    .hero-claim em { font-style: italic; font-weight: 400; color: var(--gold); }
-    .hero-sub { margin-top: 2.5rem; font-size: 1rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.38); max-width: 480px; }
-    .hero-meta { margin-top: 4rem; display: flex; gap: 3rem; }
-    .hero-meta-item { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.2); text-transform: uppercase; }
-    .hero-meta-item span { color: var(--gold); opacity: 0.5; margin-right: 0.3rem; }
-    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.18); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .hero-claim { font-family: var(--serif); font-size: clamp(3rem, 7vw, 6.5rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.02em; color: rgba(255,255,255,0.95); }
+    .hero-claim em { font-style: italic; color: var(--gold); }
+    .hero-sub { margin-top: 2.5rem; font-size: clamp(1.05rem, 1.4vw, 1.2rem); font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.5); max-width: 560px; }
+    .hero-meta { margin-top: 4rem; display: flex; gap: 3rem; flex-wrap: wrap; }
+    .hero-meta-item { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); text-transform: uppercase; }
+    .hero-meta-item span { color: var(--gold); opacity: 0.7; margin-right: 0.4rem; }
+    .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.25); font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; }
     .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold-dim), transparent); animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100% { opacity: 0.3; } 50% { opacity: 0.9; } }
 
     /* ── BRIDGE STATEMENTS ── */
     .bridge { padding: clamp(6rem, 14vw, 11rem) 0; position: relative; }
-    .bridge::before { content: ''; position: absolute; top: 0; left: clamp(1.5rem, 5vw, 4rem); width: 40px; height: 1px; background: var(--gold); opacity: 0.35; }
+    .bridge::before { content: ''; position: absolute; top: 0; left: clamp(1.5rem, 5vw, 4rem); width: 40px; height: 1px; background: var(--gold); opacity: 0.4; }
     .bridge-dark { background: var(--deep); }
     .bridge-mid { background: linear-gradient(180deg, var(--dark), var(--navy) 50%, var(--slate)); }
     .bridge-light { background: var(--cream); color: var(--text-dark); }
-    .bridge-text { font-family: var(--serif); font-size: clamp(1.8rem, 3.8vw, 3.2rem); font-weight: 300; line-height: 1.35; max-width: 750px; }
-    .bridge-dark .bridge-text { color: rgba(255,255,255,0.65); }
-    .bridge-mid .bridge-text { color: rgba(255,255,255,0.7); }
+    .bridge-text { font-family: var(--serif); font-size: clamp(2rem, 4.2vw, 3.4rem); font-weight: 400; line-height: 1.35; max-width: 780px; }
+    .bridge-dark .bridge-text { color: rgba(255,255,255,0.75); }
+    .bridge-mid .bridge-text { color: rgba(255,255,255,0.82); }
     .bridge-light .bridge-text { color: var(--navy); }
-    .bridge-text em { font-style: italic; font-weight: 400; }
-    .bridge-dark .bridge-text em { color: rgba(255,255,255,0.95); }
+    .bridge-text em { font-style: italic; }
+    .bridge-dark .bridge-text em { color: white; }
     .bridge-mid .bridge-text em { color: var(--gold); }
     .bridge-light .bridge-text em { color: var(--text-dark); }
-    .bridge-ref { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; margin-top: 2rem; opacity: 0.25; text-transform: uppercase; }
+    .bridge-ref { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; margin-top: 2rem; opacity: 0.35; text-transform: uppercase; }
 
     /* ── LEISTUNGEN ── */
     .leistungen { background: var(--deep); padding: clamp(5rem, 10vw, 8rem) 0; }
-    .section-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.55; margin-bottom: 1rem; }
-    .section-heading { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; line-height: 1.2; color: rgba(255,255,255,0.85); max-width: 550px; margin-bottom: 4rem; }
-    .leistung { display: grid; grid-template-columns: 60px 1fr; gap: 0 2.5rem; padding: 2.5rem 0; border-top: 1px solid rgba(255,255,255,0.05); align-items: start; }
-    .leistung:last-child { border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .leistung-nr { font-family: var(--mono); font-size: 0.72rem; color: var(--gold); opacity: 0.4; padding-top: 0.25rem; }
-    .leistung h3 { font-family: var(--serif); font-size: 1.45rem; font-weight: 400; color: rgba(255,255,255,0.8); margin-bottom: 0.6rem; transition: color 0.3s; }
+    .section-label { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.65; margin-bottom: 1.2rem; }
+    .section-heading { font-family: var(--serif); font-size: clamp(2.2rem, 3.8vw, 3rem); font-weight: 400; line-height: 1.2; color: rgba(255,255,255,0.9); max-width: 600px; margin-bottom: 4rem; letter-spacing: -0.01em; }
+    .leistung { display: grid; grid-template-columns: 70px 1fr; gap: 0 2.5rem; padding: 2.8rem 0; border-top: 1px solid rgba(255,255,255,0.07); align-items: start; }
+    .leistung:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .leistung-nr { font-family: var(--mono); font-size: 0.85rem; color: var(--gold); opacity: 0.5; padding-top: 0.5rem; }
+    .leistung h3 { font-family: var(--serif); font-size: 1.7rem; font-weight: 500; color: rgba(255,255,255,0.88); margin-bottom: 0.8rem; transition: color 0.3s; letter-spacing: -0.01em; }
     .leistung:hover h3 { color: white; }
-    .leistung p { font-size: 0.88rem; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.32); max-width: 540px; transition: color 0.4s; }
-    .leistung:hover p { color: rgba(255,255,255,0.52); }
+    .leistung p { font-size: 1.0625rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.42); max-width: 620px; transition: color 0.4s; }
+    .leistung:hover p { color: rgba(255,255,255,0.62); }
 
-    /* ── KANZLEI ── */
-    .kanzlei { background: linear-gradient(180deg, var(--dark) 0%, var(--cream) 35%); padding: clamp(8rem, 14vw, 12rem) 0 clamp(5rem, 10vw, 8rem); }
+    /* ── KANZLEI (gradient to light) ── */
+    .kanzlei { background: linear-gradient(180deg, var(--deep) 0%, var(--dark) 15%, #2A3A5E 35%, var(--cream) 65%, var(--warm) 100%); padding: clamp(8rem, 14vw, 12rem) 0 clamp(5rem, 10vw, 8rem); }
     .kanzlei-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .kanzlei .section-label { color: var(--gold); opacity: 0.7; }
-    .kanzlei-heading { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; color: var(--navy); line-height: 1.2; margin-bottom: 2rem; }
-    .kanzlei-heading em { font-style: italic; font-weight: 400; }
-    .kanzlei-text { font-size: 0.92rem; font-weight: 300; line-height: 1.8; color: rgba(42,42,42,0.55); margin-bottom: 1.5rem; }
-    .kanzlei-quals { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 2rem; }
-    .kanzlei-qual { font-family: var(--mono); font-size: 0.72rem; color: rgba(42,42,42,0.38); padding-left: 1.2rem; position: relative; }
-    .kanzlei-qual::before { content: ''; position: absolute; left: 0; top: 50%; width: 5px; height: 1px; background: var(--gold); }
-    .kanzlei-logo { width: 100%; max-width: 380px; margin-bottom: 3rem; opacity: 0.9; }
-    .kanzlei-quote { font-family: var(--serif); font-size: 1.3rem; font-style: italic; font-weight: 300; line-height: 1.5; color: var(--navy); padding: 2.5rem 0; border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); }
-    .kanzlei-quote::before { content: '»'; font-size: 3rem; color: var(--gold); line-height: 1; display: block; margin-bottom: 0.5rem; opacity: 0.5; }
-    .kanzlei-sig { font-family: var(--sans); font-size: 0.78rem; font-style: normal; color: rgba(42,42,42,0.35); margin-top: 1rem; display: block; }
+    .kanzlei .section-label { color: var(--gold); opacity: 0.75; }
+    .kanzlei-heading { font-family: var(--serif); font-size: clamp(2.2rem, 3.8vw, 3rem); font-weight: 400; color: var(--navy); line-height: 1.2; margin-bottom: 2rem; letter-spacing: -0.01em; }
+    .kanzlei-heading em { font-style: italic; }
+    .kanzlei-text { font-size: 1.0625rem; font-weight: 300; line-height: 1.8; color: rgba(31,31,31,0.7); margin-bottom: 1.5rem; }
+    .kanzlei-quals { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 2.5rem; }
+    .kanzlei-qual { font-family: var(--mono); font-size: 0.85rem; color: rgba(31,31,31,0.5); padding-left: 1.2rem; position: relative; }
+    .kanzlei-qual::before { content: ''; position: absolute; left: 0; top: 50%; width: 6px; height: 1px; background: var(--gold); }
+    .kanzlei-logo { width: 100%; max-width: 380px; margin-bottom: 3rem; opacity: 0.95; }
+    .kanzlei-quote { font-family: var(--serif); font-size: 1.45rem; font-style: italic; font-weight: 400; line-height: 1.5; color: var(--navy); padding: 2.5rem 0; border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); }
+    .kanzlei-quote::before { content: '»'; font-size: 3.5rem; color: var(--gold); line-height: 1; display: block; margin-bottom: 0.5rem; opacity: 0.55; }
+    .kanzlei-sig { font-family: var(--sans); font-size: 0.88rem; font-style: normal; font-weight: 400; color: rgba(31,31,31,0.4); margin-top: 1.2rem; display: block; letter-spacing: 0.01em; }
 
-    /* ── TECH ── */
-    .tech { background: var(--cream); padding: clamp(4rem, 8vw, 6rem) 0; }
+    /* ── TECHNOLOGIE ── */
+    .tech { background: var(--warm); padding: clamp(4rem, 8vw, 6rem) 0; }
     .tech .section-heading { color: var(--navy); margin-bottom: 3rem; }
-    .tech-flow { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .tech-tag { font-family: var(--mono); font-size: 0.75rem; padding: 0.5rem 1rem; border: 1px solid rgba(31,56,100,0.1); color: rgba(42,42,42,0.45); transition: all 0.3s var(--ease); cursor: default; }
+    .tech-flow { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .tech-tag { font-family: var(--mono); font-size: 0.85rem; padding: 0.6rem 1.15rem; border: 1px solid rgba(31,56,100,0.12); color: rgba(31,31,31,0.55); transition: all 0.3s var(--ease); cursor: default; }
     .tech-tag:hover { background: var(--navy); color: white; border-color: var(--navy); }
-    .tech-tag.accent { border-color: var(--gold); color: var(--navy); }
 
-    /* ── KONTAKT ── */
-    .kontakt { background: var(--warm); padding: clamp(5rem, 10vw, 8rem) 0; }
-    .kontakt .section-heading { color: var(--navy); margin-bottom: 1rem; }
-    .kontakt-intro { font-size: 0.92rem; font-weight: 300; color: rgba(42,42,42,0.45); max-width: 500px; margin-bottom: 3.5rem; line-height: 1.7; }
+    /* ── KONTAKT (gradient back to dark) ── */
+    .kontakt { background: linear-gradient(180deg, var(--warm) 0%, var(--cream) 100%); padding: clamp(5rem, 10vw, 8rem) 0; }
+    .kontakt .section-heading { color: var(--navy); margin-bottom: 1.2rem; }
+    .kontakt-intro { font-size: 1.0625rem; font-weight: 300; color: rgba(31,31,31,0.55); max-width: 540px; margin-bottom: 3.5rem; line-height: 1.75; }
     .kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
     .kontakt-block { margin-bottom: 2rem; }
-    .kontakt-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(42,42,42,0.25); margin-bottom: 0.4rem; }
-    .kontakt-value { font-size: 0.92rem; color: var(--text-dark); line-height: 1.6; }
-    .kontakt-value a { color: var(--navy); border-bottom: 1px solid rgba(31,56,100,0.12); transition: border-color 0.3s; }
+    .kontakt-label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(31,31,31,0.3); margin-bottom: 0.45rem; }
+    .kontakt-value { font-size: 1.0625rem; color: var(--text-dark); line-height: 1.6; font-weight: 300; }
+    .kontakt-value a { color: var(--navy); border-bottom: 1px solid rgba(31,56,100,0.15); transition: border-color 0.3s; }
     .kontakt-value a:hover { border-color: var(--navy); }
-    .kontakt-hours { border-top: 1px solid var(--stone); padding-top: 1.5rem; }
-    .hours-row { display: flex; justify-content: space-between; padding: 0.35rem 0; font-size: 0.85rem; }
+    .kontakt-hours { border-top: 1px solid var(--stone); padding-top: 2rem; margin-top: 2rem; }
+    .hours-row { display: flex; justify-content: space-between; padding: 0.45rem 0; font-size: 0.95rem; }
     .hours-day { color: var(--text-dark); font-weight: 400; }
-    .hours-time { color: rgba(42,42,42,0.35); font-weight: 300; }
-    .kontakt-form { display: flex; flex-direction: column; gap: 1rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
-    .form-group label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(42,42,42,0.25); }
-    .form-group input, .form-group textarea { padding: 0.75rem 0; border: none; border-bottom: 1px solid var(--stone); background: transparent; font-family: var(--sans); font-size: 0.9rem; font-weight: 300; color: var(--text-dark); outline: none; transition: border-color 0.3s; }
+    .hours-time { color: rgba(31,31,31,0.45); font-weight: 300; }
+    .kontakt-form { display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(31,31,31,0.35); }
+    .form-group input, .form-group textarea { padding: 0.85rem 0; border: none; border-bottom: 1px solid var(--stone); background: transparent; font-family: var(--sans); font-size: 1rem; font-weight: 300; color: var(--text-dark); outline: none; transition: border-color 0.3s; }
     .form-group input:focus, .form-group textarea:focus { border-color: var(--navy); }
-    .form-group textarea { resize: vertical; min-height: 90px; }
-    .btn { font-family: var(--sans); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.85rem 2rem; border: none; cursor: pointer; transition: all 0.35s var(--ease); margin-top: 0.5rem; }
+    .form-group textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+    .btn { font-family: var(--sans); font-size: 0.88rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2.2rem; border: none; cursor: pointer; transition: all 0.35s var(--ease); margin-top: 0.5rem; }
     .btn-dark { background: var(--navy); color: white; }
-    .btn-dark:hover { background: var(--slate); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(31,56,100,0.2); }
+    .btn-dark:hover { background: var(--slate); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(31,56,100,0.25); }
+    .form-note { font-size: 0.82rem; color: rgba(31,31,31,0.4); font-weight: 300; margin-top: 0.8rem; line-height: 1.5; }
 
-    /* ── FOOTER ── */
-    footer { background: var(--abyss); padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.04); }
+    /* ── FOOTER (gradient cream back to abyss) ── */
+    .footer-transition {
+      height: clamp(5rem, 10vw, 8rem);
+      background: linear-gradient(180deg, var(--cream) 0%, var(--dark) 60%, var(--abyss) 100%);
+    }
+    footer { background: var(--abyss); padding: 3rem 0 3.5rem; }
     .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.18); }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
     .footer-links { display: flex; gap: 2rem; list-style: none; }
-    .footer-links a { font-size: 0.72rem; color: rgba(255,255,255,0.18); transition: color 0.3s; }
-    .footer-links a:hover { color: rgba(255,255,255,0.5); }
+    .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.25); transition: color 0.3s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.6); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
@@ -182,9 +184,9 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-links.open { display: flex; flex-direction: column; position: fixed; inset: 0; background: rgba(5,8,16,0.97); justify-content: center; align-items: center; gap: 2rem; z-index: 100; }
-      .nav-links.open a { font-size: 1rem; color: rgba(255,255,255,0.6) !important; }
+      .nav-links.open a { font-size: 1.1rem; color: rgba(255,255,255,0.7) !important; }
       .hamburger { display: flex; }
-      .hero-meta { flex-wrap: wrap; gap: 1.5rem; }
+      .hero-meta { gap: 1.5rem; }
       .leistung { grid-template-columns: 1fr; gap: 0.5rem; }
       .form-row { grid-template-columns: 1fr; }
     }
@@ -211,9 +213,9 @@
       <p class="hero-claim r">Das Unsichtbare<br /><em>schützen.</em></p>
       <p class="hero-sub r r1">Geistiges Eigentum ist das Paradoxon, das Unsichtbare zu besitzen. Ich gebe Ihren Ideen eine Form, die bleibt — und die wirkt.</p>
       <div class="hero-meta r r2">
-        <div class="hero-meta-item"><span>§</span> PatG · EPÜ · MarkenG</div>
-        <div class="hero-meta-item"><span>↗</span> DE · EP · PCT · WIPO</div>
-        <div class="hero-meta-item"><span>◉</span> Markdorf am Bodensee</div>
+        <div class="hero-meta-item"><span>§</span>PatG · EPÜ · MarkenG</div>
+        <div class="hero-meta-item"><span>↗</span>DE · EP · PCT · WIPO</div>
+        <div class="hero-meta-item"><span>◉</span>Markdorf am Bodensee</div>
       </div>
     </div>
     <div class="hero-scroll"><div class="hero-scroll-line"></div>Entdecken</div>
@@ -237,7 +239,6 @@
       <div class="leistung r"><div class="leistung-nr">§ 03</div><div><h3>Recherche & FTO</h3><p>Patent-, Marken- und Freedom-to-Operate-Recherchen als Entscheidungsgrundlage. Neuheitsbewertung nach § 3 PatG bzw. Art. 54 EPÜ.</p></div></div>
       <div class="leistung r"><div class="leistung-nr">§ 04</div><div><h3>Verletzung & Durchsetzung</h3><p>Patent-, Marken- und Designverletzungen. Abmahnungen, UDRP-Verfahren, einstweilige Verfügungen in Zusammenarbeit mit spezialisierten Rechtsanwälten.</p></div></div>
       <div class="leistung r"><div class="leistung-nr">§ 05</div><div><h3>Verträge & Lizenzen</h3><p>Lizenz-, Know-how- und Entwicklungsverträge. IP-Due-Diligence, Arbeitnehmererfindungsrecht nach ArbNErfG, Geheimhaltungsvereinbarungen.</p></div></div>
-
     </div>
   </section>
 
@@ -249,7 +250,7 @@
     </div>
   </div>
 
-  <!-- ═══ KANZLEI ═══ -->
+  <!-- ═══ KANZLEI (mit Farbverlauf dark → cream) ═══ -->
   <section class="kanzlei" id="kanzlei">
     <div class="container">
       <div class="kanzlei-grid">
@@ -319,7 +320,7 @@
           <div class="kontakt-block"><div class="kontakt-label">Telefon</div><div class="kontakt-value"><a href="tel:+4915117868568">+49 (0) 151 178 68 568</a></div></div>
           <div class="kontakt-block"><div class="kontakt-label">E-Mail</div><div class="kontakt-value"><a href="mailto:patent@riegel-markdorf.de">patent@riegel-markdorf.de</a></div></div>
           <div class="kontakt-hours">
-            <div class="kontakt-label" style="margin-bottom:0.6rem">Sprechzeiten</div>
+            <div class="kontakt-label" style="margin-bottom:0.8rem">Sprechzeiten</div>
             <div class="hours-row"><span class="hours-day">Montag – Donnerstag</span><span class="hours-time">09:00 – 18:00</span></div>
             <div class="hours-row"><span class="hours-day">Freitag</span><span class="hours-time">09:00 – 16:00</span></div>
             <div class="hours-row"><span class="hours-day">Wochenende</span><span class="hours-time">nach Vereinbarung</span></div>
@@ -331,14 +332,17 @@
               <div class="form-group"><label for="name">Name</label><input type="text" id="name" required /></div>
               <div class="form-group"><label for="email">E-Mail</label><input type="email" id="email" required /></div>
             </div>
-            <div class="form-group"><label for="betreff">Betreff</label><input type="text" id="betreff" /></div>
-            <div class="form-group"><label for="msg">Ihr Anliegen</label><textarea id="msg" required></textarea></div>
+            <div class="form-group"><label for="betreff">Betreff</label><input type="text" id="betreff" placeholder="z. B. Patentanmeldung, Markenrecherche" /></div>
+            <div class="form-group"><label for="msg">Ihr Anliegen</label><textarea id="msg" required placeholder="Schildern Sie kurz Ihr Anliegen …"></textarea></div>
             <button type="submit" class="btn btn-dark">Nachricht senden →</button>
+            <p class="form-note">Beim Klick öffnet sich Ihr E-Mail-Programm mit einer vorbereiteten Nachricht an <strong>patent@riegel-markdorf.de</strong>. Sie können die Nachricht vor dem Versand prüfen und anpassen. Es werden keine Daten an Dritte übertragen.</p>
           </form>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="footer-transition"></div>
 
   <footer>
     <div class="container footer-inner">
@@ -366,7 +370,26 @@
     document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
     const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add('v'); }); }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.r').forEach(el => obs.observe(el));
-    function handleSubmit(e) { e.preventDefault(); const b = e.target.querySelector('button'); b.textContent = 'Gesendet ✓'; b.style.background = '#2B8A3E'; setTimeout(() => { b.textContent = 'Nachricht senden →'; b.style.background = ''; e.target.reset(); }, 3000); }
+
+    /* Functional contact form via mailto — no third-party service, fully GDPR-compliant */
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const betreff = document.getElementById('betreff').value.trim() || 'Anfrage über riegel-markdorf.de';
+      const msg = document.getElementById('msg').value.trim();
+
+      const body = `Name: ${name}\r\nE-Mail: ${email}\r\n\r\n${msg}\r\n\r\n---\r\nGesendet über das Kontaktformular auf riegel-markdorf.de`;
+      const mailto = `mailto:patent@riegel-markdorf.de?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailto;
+
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'E-Mail-Programm geöffnet ✓';
+      btn.style.background = '#2B8A3E';
+      setTimeout(() => { btn.textContent = 'Nachricht senden →'; btn.style.background = ''; }, 4000);
+    }
   </script>
+
 </body>
 </html>
