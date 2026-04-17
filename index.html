@@ -42,10 +42,12 @@
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 0; transition: all 0.6s var(--ease); }
     .nav.scrolled { background: rgba(5,8,16,0.88); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); padding: 0.9rem 0; }
     .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-    .nav-logo { height: 42px; width: auto; filter: brightness(0) invert(1); opacity: 0.9; transition: all 0.4s; }
+    .nav-logo { height: 42px; width: auto; transition: all 0.4s; display: block; }
     .nav.scrolled .nav-logo { height: 34px; }
+    .nav-logo-light { display: none; }
+    .nav.light .nav-logo-dark { display: none; }
+    .nav.light .nav-logo-light { display: block; }
     .nav.light { background: rgba(245,242,236,0.9); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); }
-    .nav.light .nav-logo { filter: none; opacity: 1; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
     .nav-links a { font-size: 0.85rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); transition: color 0.3s; }
     .nav-links a:hover { color: rgba(255,255,255,0.95); }
@@ -117,8 +119,44 @@
     .leistung p { font-size: 1.0625rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.42); max-width: 620px; transition: color 0.4s; }
     .leistung:hover p { color: rgba(255,255,255,0.62); }
 
-    /* ── KANZLEI (gradient to light) ── */
-    .kanzlei { background: linear-gradient(180deg, var(--deep) 0%, var(--dark) 15%, #2A3A5E 35%, var(--cream) 65%, var(--warm) 100%); padding: clamp(8rem, 14vw, 12rem) 0 clamp(5rem, 10vw, 8rem); }
+    /* ── KANZLEI-TRANSITION: smooth gradient dark → warm BEFORE content ── */
+    .kanzlei-transition {
+      height: clamp(4rem, 10vw, 7rem);
+      background: linear-gradient(180deg, var(--deep) 0%, var(--dark) 25%, #2A3A5E 50%, var(--cream) 85%, var(--warm) 100%);
+    }
+
+    /* ── KANZLEI (fully on warm background now) ── */
+    .kanzlei { background: var(--warm); padding: clamp(5rem, 10vw, 8rem) 0 clamp(5rem, 10vw, 8rem); }
+
+    /* Logo as featured letterhead opener */
+    .kanzlei-letterhead {
+      text-align: center;
+      margin-bottom: clamp(4rem, 8vw, 6rem);
+      position: relative;
+    }
+    .kanzlei-letterhead::before {
+      content: '';
+      display: block;
+      width: 60px; height: 1px;
+      background: var(--gold);
+      margin: 0 auto 2.5rem;
+      opacity: 0.5;
+    }
+    .kanzlei-letterhead-logo {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      display: block;
+    }
+    .kanzlei-letterhead-sub {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(31,31,31,0.4);
+      margin-top: 2rem;
+    }
+
     .kanzlei-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
     .kanzlei .section-label { color: var(--gold); opacity: 0.75; }
     .kanzlei-heading { font-family: var(--serif); font-size: clamp(2.2rem, 3.8vw, 3rem); font-weight: 400; color: var(--navy); line-height: 1.2; margin-bottom: 2rem; letter-spacing: -0.01em; }
@@ -127,7 +165,6 @@
     .kanzlei-quals { display: flex; flex-direction: column; gap: 0.55rem; margin-top: 2.5rem; }
     .kanzlei-qual { font-family: var(--mono); font-size: 0.85rem; color: rgba(31,31,31,0.5); padding-left: 1.2rem; position: relative; }
     .kanzlei-qual::before { content: ''; position: absolute; left: 0; top: 50%; width: 6px; height: 1px; background: var(--gold); }
-    .kanzlei-logo { width: 100%; max-width: 380px; margin-bottom: 3rem; opacity: 0.95; }
     .kanzlei-quote { font-family: var(--serif); font-size: 1.45rem; font-style: italic; font-weight: 400; line-height: 1.5; color: var(--navy); padding: 2.5rem 0; border-top: 1px solid var(--stone); border-bottom: 1px solid var(--stone); }
     .kanzlei-quote::before { content: '»'; font-size: 3.5rem; color: var(--gold); line-height: 1; display: block; margin-bottom: 0.5rem; opacity: 0.55; }
     .kanzlei-sig { font-family: var(--sans); font-size: 0.88rem; font-style: normal; font-weight: 400; color: rgba(31,31,31,0.4); margin-top: 1.2rem; display: block; letter-spacing: 0.01em; }
@@ -196,7 +233,10 @@
 
   <nav class="nav" id="nav">
     <div class="container nav-inner">
-      <a href="#top"><img src="logotiff.png" alt="Dr. Werner Riegel" class="nav-logo" /></a>
+      <a href="#top" class="nav-brand">
+        <img src="logo-dark.png" alt="Dr. Werner Riegel" class="nav-logo nav-logo-dark" />
+        <img src="logotiff.png" alt="Dr. Werner Riegel" class="nav-logo nav-logo-light" />
+      </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#leistungen">Leistungen</a></li>
         <li><a href="#kanzlei">Kanzlei</a></li>
@@ -250,9 +290,19 @@
     </div>
   </div>
 
-  <!-- ═══ KANZLEI (mit Farbverlauf dark → cream) ═══ -->
+  <!-- ═══ TRANSITION: dark → warm ═══ -->
+  <div class="kanzlei-transition"></div>
+
+  <!-- ═══ KANZLEI ═══ -->
   <section class="kanzlei" id="kanzlei">
     <div class="container">
+
+      <!-- Featured letterhead logo -->
+      <div class="kanzlei-letterhead r">
+        <img src="logotiff.png" alt="Dr. Werner Riegel — Patentanwalt · Diplom-Physiker · European Patent Attorney · European Trademark and Design Attorney" class="kanzlei-letterhead-logo" />
+        <div class="kanzlei-letterhead-sub">Diplom-Physiker · Dr. rer. nat. · Markdorf am Bodensee</div>
+      </div>
+
       <div class="kanzlei-grid">
         <div>
           <div class="section-label r">Die Kanzlei</div>
@@ -270,7 +320,6 @@
           </div>
         </div>
         <div>
-          <img src="logotiff.png" alt="Dr. Werner Riegel – Patentanwalt" class="kanzlei-logo r" />
           <div class="kanzlei-quote r r1">Ideen sind wie Teilchen — erst wenn man sie präzise beschreibt, nehmen sie eine Wirkung an.<span class="kanzlei-sig">Dr. Werner Riegel · Patentanwalt · Diplom-Physiker</span></div>
         </div>
       </div>
